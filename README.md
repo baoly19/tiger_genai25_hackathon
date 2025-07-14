@@ -61,5 +61,5 @@ This repository is a submission project and builds upon the [GenAI-AgentOS](http
 
 ## ✨ Contact
 
-For any questions or collaboration interests, please contact the project maintainers [Nhat Bui](mailto:lyngocgiabao1958@gmail.com), [Bao Ly](mailto:nhat117@gmail.com), and [Minh Dau](dmailto::auhoangminh9@gmail.com). 
+For any questions or collaboration interests, please contact the project maintainers [Nhat Bui](mailto:lyngocgiabao1958@gmail.com), [Bao Ly](mailto:nhat117@gmail.com), and [Minh Dau](mailto::dauhoangminh9@gmail.com). 
 
