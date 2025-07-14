@@ -25,13 +25,13 @@ genai-agentos/     → Forked GenAI-AgentOS repository containing custom diagnos
 ````
 ### 🔧 Tech Stack Overview
 
-| **Framework / Tool**     | **Description**                                                                   | **Logo**                                                                                                                                                                                                                       |
+| **Framework / Tool**     | **Description**                                                                   |                                                                                                                                                                                                                      |
 | ------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **GenAI-AgentOS**        | Open multi-agent orchestration platform powering the diagnostic workflows         | <img src="https://media.beehiiv.com/cdn-cgi/image/format=auto,fit=scale-down,onerror=redirect/uploads/asset/file/1d2ab624-c9c3-404d-89ad-15ca27a710aa/favicon.png" alt ="agent os" width="60">                                                                                                            |
-| **FastMCP**              | Lightweight multi-agent control panel enabling async agent routing & management   | <img src="https://fastmcp.me/img/fastmcp-logo-for-white-bg.svg" alt="FastMCP Logo" width="80"/>                                                                                                                                |
+| **FastMCP**              |FastMCP is a lightweight, async server that manages routing and tool execution for AI agents in a multi-agent orchestration system.  | <img src="https://fastmcp.me/img/fastmcp-logo-for-white-bg.svg" alt="FastMCP Logo" width="80"/>                                                                                                                                |
 | **Flutter**              | Cross-platform UI toolkit for building our responsive and intuitive web interface | <img src="https://cdn.iconscout.com/icon/free/png-256/free-flutter-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-3-pack-logos-icons-2944876.png" alt="Flutter Logo" width="60"/>                 |
 | **FastAPI**              | Modern Python web framework powering the backend services                         | <img src="https://cdn.worldvectorlogo.com/logos/fastapi.svg" alt="FastAPI Logo" width="60"/>                                                                                                                                   |
-| **OpenAI / HuggingFace** | Foundation models & APIs for medical and multimodal AI inference                  | <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI Logo" width="60"/> <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace Logo" width="60"/> |
+| **OpenAI / HuggingFace** | Foundation models & APIs for medical and multimodal AI inference                  | <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI Logo" width="70"/> <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace Logo" width="30"/> |
 | **PubMed Database**      | Authoritative biomedical literature source for grounding diagnosis with evidence  | <img src="https://cdn.ncbi.nlm.nih.gov/pubmed/ae3b6fe1-8b22-4d67-a2af-2f90d92dccf1/core/images/pubmed-logo-blue.svg" alt="pubmed logo" width="80">                                                                             |
 
 
@@ -80,7 +80,7 @@ This repository is a submission project and builds upon the [GenAI-AgentOS](http
 ## 🙌 Acknowledgments
 
 
-A huge thank to the team [GenAI-AgentOS](https://github.com/genai-works-org/genai-agentos) for the agent infrastructure
+A huge thank to the team [GenAI-AgentOS](https://github.com/genai-works-org/genai-agentos) for the agent infrastructure.
 We would like to thank the open-source community to make this project possible.
  
 This project is inspired by recent advances in AI for healthcare, clinical NLP, and multimodal diagnosis systems:
