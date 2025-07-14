@@ -5,6 +5,8 @@ This repository contains the complete solution for an AI-powered medical diagnos
 ⚠️ Go to the [Genai-agentos Folder](./genai-agentos/) for simple demo setup and detailed stup instruction on the AgentOS platform
 
 This repo is part of submission for the [LeadWithAIAgents hackathon](https://genai.works/hackathon#judges)
+
+Visit our notion page for full information [Notion](https://www.notion.so/Team-Tiger-Documentation-23050dd93a9c8006989ff199a77e21d7)
 ---
 
 ## 🗂️ Repository Structure
