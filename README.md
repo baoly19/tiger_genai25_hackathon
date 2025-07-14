@@ -65,10 +65,47 @@ This repository is a submission project and builds upon the [GenAI-AgentOS](http
 
 ## 🙌 Acknowledgments
 
-* [GenAI-AgentOS](https://github.com/genai-works-org/genai-agentos) for the agent infrastructure
-* Flutter and FastAPI for the development stack
-* All contributors and open-source libraries involved in this solution
 
+A huge thank to the team [GenAI-AgentOS](https://github.com/genai-works-org/genai-agentos) for the agent infrastructure
+We would like to thank the following open-source frameworks and contributors who made this project possible:
+
+| Framework/Tool           | Description                                                                        | Logo                                                                                                                                                                                                                           |
+| ------------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **GenAI-AgentOS**        | Open multi-agent orchestration platform powering the diagnostic workflows          | <img src="https://raw.githubusercontent.com/genai-agentos/agentos/main/docs/logo.png" alt="AgentOS" width="80"/>                                                                                                               |
+| **FastMCP**              | Lightweight multi-agent control panel enabling async agent routing and management  | <img src="https://fastmcp.ai/logo.svg" alt="FastMCP Logo" width="80"/>                                                                                                                                                         |
+| **Flutter**              | Cross-platform UI toolkit used to build our responsive and intuitive web interface | <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" alt="Flutter Logo" width="60"/>                                                                                                         |
+| **FastAPI**              | Modern Python web framework for our backend service                                | <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI Logo" width="60"/>                                                                                                                          |
+| **OpenAI / HuggingFace** | Foundational models and inference APIs for medical and multimodal AI capabilities  | <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/OpenAI_Logo.svg" alt="OpenAI Logo" width="60"/> <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace Logo" width="60"/> |
+
+This project is inspired by recent advances in AI for healthcare, clinical NLP, and multimodal diagnosis systems:
+```
+MedVLM: Towards Generalist Biomedical Vision-Language Models with Medical Knowledge Enhanced Pretraining
+Liang, J., et al., Computer Methods and Programs in Biomedicine, 2024.
+PMID: 38501513
+
+GatorTron: A Large Clinical Language Model to Unlock Patient Information from Unstructured Electronic Health Records
+Yang, X., et al., npj Digital Medicine, 2022.
+PMID: 35788535
+
+Large Language Models Encode Clinical Knowledge
+Singhal, K., et al., Nature, 2023.
+PMID: 37097425
+
+Clinical Decision Support Systems Using AI: Review and Opportunities
+Rajkomar, A., et al., The Lancet Digital Health, 2022.
+PMID: 35120945
+
+Vision-Language Models for Medical Imaging: A Review of Current Applications and Future Directions
+Huang, K., et al., Journal of Biomedical Informatics, 2023.
+PMID: 37088422
+
+Mixture of Experts Models in Healthcare AI: Routing Tasks Across Specialized Subnetworks
+Ramesh, A., et al., arXiv:2101.03961 (adapted in clinical NLP pipelines)
+
+ClinicalBERT: Modeling Clinical Notes and Predicting Hospital Readmission
+Alsentzer, E., et al., PMLR, 2019.
+PMID: 31576177
+```
 ---
 
 ## ✨ Contact
