@@ -1,0 +1,28 @@
+version: '3.8'
+
+networks:
+  default:
+    external: true
+    name: hackathon-genai-agentos_local-genai-network
+
+services:
+  agent-service:
+    build: .
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      # Use external network to connect to main backend
+      - AGENTOS_API_URL=http://genai-backend:8000
+      - AGENTOS_WS_URL=ws://genai-router:8080/ws
+    volumes:
+      - ./uploads:/app/uploads
+      - .:/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 

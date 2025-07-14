@@ -1,0 +1,29 @@
+# Simple Agent Service Configuration
+
+# Server Settings
+HOST=0.0.0.0
+PORT=8001
+DEBUG=true
+
+# File Upload Settings  
+UPLOAD_DIR=uploads
+MAX_FILE_SIZE=10485760
+PROCESSING_TIMEOUT=120
+
+# AI System Prompt
+SYSTEM_PROMPT_TEMPLATE=You are an AI assistant specialized in analyzing uploaded files. You have been provided with a file that has the ID: {file_id}. Please provide a comprehensive analysis of the file including its content, structure, key insights, and any recommendations.
+
+# AgentOS Connection
+AGENTOS_USERNAME=your_agent_os_username
+AGENTOS_PASSWORD=your_agentos_password
+AGENTOS_API_URL=http://localhost:8000
+AGENTOS_WS_URL=ws://localhost:8000
+TARGET_AGENT_UUID=master_server_ml
+
+# Default UUIDs for file upload
+DEFAULT_REQUEST_ID=3fa85f64-5717-4562-b3fc-2c963f66afa6
+DEFAULT_SESSION_ID=3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+#Supabase Login
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_key

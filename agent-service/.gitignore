@@ -1,0 +1,11 @@
+.env
+.env.backup
+sample.env
+test.txt
+test_document.txt
+test_file.txt
+test_image.txt
+test_upload.txt
+services/__pycache__/__init__.cpython-313.pyc
+*.pyc
+*.py
