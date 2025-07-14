@@ -1,6 +1,8 @@
-# GenAI Medical Diagnosis Platform
+# 🏥 AutoClinicAI System - Team Tiger
 
-This repository contains the complete solution for an AI-powered medical diagnosis platform. It includes a Flutter-based frontend, a FastAPI backend service, collaborative research components, and a set of intelligent agents for processing and diagnosing patient medical data using the GenAI-AgentOS framework.
+This repository contains the complete solution for an AI-powered medical diagnosis platform. It includes a Flutter-based frontend, a FastAPI backend service, and a set of intelligent agents for processing and diagnosing patient medical data using the GenAI-AgentOS framework.
+
+⚠️ Go to the [Genai-agentos Folder](./genai-agentos/) for simple demo setup and detailed stup instruction on the AgentOS platform
 
 This repo is part of submission for the [LeadWithAIAgents hackathon](https://genai.works/hackathon#judges)
 ---
@@ -35,10 +37,9 @@ A **Python FastAPI service** with two core responsibilities:
 Contains a **Jupyter Notebook** used to host and coordinate the **MCP server**, enabling distributed agent execution for diagnosis.
 
 ### 4. `genai-agentos/`  
-A **forked and customized version** of [GenAI-AgentOS](https://github.com/genai-works-org/genai-agento), enhanced to:
+A **customized version** of [GenAI-AgentOS](https://github.com/genai-works-org/genai-agento) for our solution of AutoClinic.ai, enhanced to:
 - Implement diagnosis-specific agents
-- Integrate with FastAPI service triggers
-- Support custom workflows tailored for medical use cases
+- Support custom workflows tailored for medical diagnosis and treatment planning use cases
 
 ---
 
@@ -58,4 +59,5 @@ This repository is a submission project and builds upon the [GenAI-AgentOS](http
 
 ## ✨ Contact
 
-For any questions or collaboration interests, please contact the project maintainer.
+For any questions or collaboration interests, please contact the project maintainers [Nhat Bui](mailto:lyngocgiabao1958@gmail.com), [Bao Ly](mailto:nhat117@gmail.com), and [Minh Dau](dmailto::auhoangminh9@gmail.com). 
+
