@@ -2,6 +2,8 @@
 
 ![Logo](https://private-user-images.githubusercontent.com/72547907/465959586-6d213bb6-1f6e-4981-a061-acb97214e28c.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTI0ODg0MjAsIm5iZiI6MTc1MjQ4ODEyMCwicGF0aCI6Ii83MjU0NzkwNy80NjU5NTk1ODYtNmQyMTNiYjYtMWY2ZS00OTgxLWEwNjEtYWNiOTcyMTRlMjhjLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzE0VDEwMTUyMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU3OGM2ODIzZGFhMWE2NTBmZWM2YTY0ODMyMTRiZGU0MDRjODQyOTZiOGY2ZjJmNzdjNTg4MzEyMDkzMGU0ZWImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.4a-IPZmwQBsQuOnvu9or1nmg2Zf4AXas93D6e3Hz88Q)
 
+<img alt="" class="style_title_image__zRtdD" src="https://images.genai.works/Hackathon_design_1_1_2b39696a2d.svg">
+
 This repository contains the complete solution for an AI-powered medical diagnosis platform. It includes a Flutter-based frontend, a FastAPI backend service, and a set of intelligent agents for processing and diagnosing patient medical data using the GenAI-AgentOS framework.
 
 ⚠️ Go to the [Genai-agentos Folder](./genai-agentos/) for simple demo setup and detailed stup instruction on the AgentOS platform
@@ -21,6 +23,18 @@ collab/            → Jupyter Notebook hosting the MCP server
 genai-agentos/     → Forked GenAI-AgentOS repository containing custom diagnosis agents
 
 ````
+### 🔧 Tech Stack Overview
+
+| **Framework / Tool**     | **Description**                                                                   | **Logo**                                                                                                                                                                                                                       |
+| ------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **GenAI-AgentOS**        | Open multi-agent orchestration platform powering the diagnostic workflows         | <img src="https://media.beehiiv.com/cdn-cgi/image/format=auto,fit=scale-down,onerror=redirect/uploads/asset/file/1d2ab624-c9c3-404d-89ad-15ca27a710aa/favicon.png" alt ="agent os" width="60">                                                                                                            |
+| **FastMCP**              | Lightweight multi-agent control panel enabling async agent routing & management   | <img src="https://fastmcp.me/img/fastmcp-logo-for-white-bg.svg" alt="FastMCP Logo" width="80"/>                                                                                                                                |
+| **Flutter**              | Cross-platform UI toolkit for building our responsive and intuitive web interface | <img src="https://cdn.iconscout.com/icon/free/png-256/free-flutter-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-3-pack-logos-icons-2944876.png" alt="Flutter Logo" width="60"/>                 |
+| **FastAPI**              | Modern Python web framework powering the backend services                         | <img src="https://cdn.worldvectorlogo.com/logos/fastapi.svg" alt="FastAPI Logo" width="60"/>                                                                                                                                   |
+| **OpenAI / HuggingFace** | Foundation models & APIs for medical and multimodal AI inference                  | <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI Logo" width="60"/> <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace Logo" width="60"/> |
+| **PubMed Database**      | Authoritative biomedical literature source for grounding diagnosis with evidence  | <img src="https://cdn.ncbi.nlm.nih.gov/pubmed/ae3b6fe1-8b22-4d67-a2af-2f90d92dccf1/core/images/pubmed-logo-blue.svg" alt="pubmed logo" width="80">                                                                             |
+
+
 
 ---
 
@@ -67,44 +81,32 @@ This repository is a submission project and builds upon the [GenAI-AgentOS](http
 
 
 A huge thank to the team [GenAI-AgentOS](https://github.com/genai-works-org/genai-agentos) for the agent infrastructure
-We would like to thank the following open-source frameworks and contributors who made this project possible:
-
-| Framework/Tool           | Description                                                                        | Logo                                                                                                                                                                                                                           |
-| ------------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **GenAI-AgentOS**        | Open multi-agent orchestration platform powering the diagnostic workflows          | <img src="https://raw.githubusercontent.com/genai-agentos/agentos/main/docs/logo.png" alt="AgentOS" width="80"/>                                                                                                               |
-| **FastMCP**              | Lightweight multi-agent control panel enabling async agent routing and management  | <img src="https://fastmcp.ai/logo.svg" alt="FastMCP Logo" width="80"/>                                                                                                                                                         |
-| **Flutter**              | Cross-platform UI toolkit used to build our responsive and intuitive web interface | <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" alt="Flutter Logo" width="60"/>                                                                                                         |
-| **FastAPI**              | Modern Python web framework for our backend service                                | <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI Logo" width="60"/>                                                                                                                          |
-| **OpenAI / HuggingFace** | Foundational models and inference APIs for medical and multimodal AI capabilities  | <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/OpenAI_Logo.svg" alt="OpenAI Logo" width="60"/> <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HuggingFace Logo" width="60"/> |
-
+We would like to thank the open-source community to make this project possible.
+ 
 This project is inspired by recent advances in AI for healthcare, clinical NLP, and multimodal diagnosis systems:
 ```
-MedVLM: Towards Generalist Biomedical Vision-Language Models with Medical Knowledge Enhanced Pretraining
-Liang, J., et al., Computer Methods and Programs in Biomedicine, 2024.
-PMID: 38501513
+MedVLM-R1: Incentivizing Medical Reasoning Capability of Vision-Language Models (VLMs) via Reinforcement Learning
+Jiazhen Pan, Che Liu, Junde Wu, Fenglin Liu, Jiayuan Zhu, Hongwei Bran Li, Chen Chen, Cheng Ouyang, Daniel Rueckert arXiv:2101.03961
 
 GatorTron: A Large Clinical Language Model to Unlock Patient Information from Unstructured Electronic Health Records
 Yang, X., et al., npj Digital Medicine, 2022.
-PMID: 35788535
+
 
 Large Language Models Encode Clinical Knowledge
 Singhal, K., et al., Nature, 2023.
-PMID: 37097425
 
 Clinical Decision Support Systems Using AI: Review and Opportunities
 Rajkomar, A., et al., The Lancet Digital Health, 2022.
-PMID: 35120945
 
 Vision-Language Models for Medical Imaging: A Review of Current Applications and Future Directions
 Huang, K., et al., Journal of Biomedical Informatics, 2023.
-PMID: 37088422
+
 
 Mixture of Experts Models in Healthcare AI: Routing Tasks Across Specialized Subnetworks
 Ramesh, A., et al., arXiv:2101.03961 (adapted in clinical NLP pipelines)
 
 ClinicalBERT: Modeling Clinical Notes and Predicting Hospital Readmission
 Alsentzer, E., et al., PMLR, 2019.
-PMID: 31576177
 ```
 ---
 
