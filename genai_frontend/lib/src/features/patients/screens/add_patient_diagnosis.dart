@@ -12,6 +12,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:http_parser/http_parser.dart';
+import 'dart:io' as io; // Only used where kIsWeb is false
+import 'package:uuid/uuid.dart';
 
 
 
@@ -105,6 +107,7 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
     if (fileName == null) return;
     print("Running upload file");
     final supabase = Supabase.instance.client;
+    final uniqueFileName = '${const Uuid().v4()}_$fileName';
 
     try {
       if (kIsWeb) {
@@ -115,18 +118,18 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
 
         await supabase.storage
             .from('medical-history-files')
-            .uploadBinary(fileName!, _webFileBytes!);
+            .uploadBinary(uniqueFileName, _webFileBytes!);
         print("Complete upload binary");
       } else {
         if (_selectedFile == null) return;
 
         await supabase.storage
             .from('medical-history-files')
-            .upload(fileName!, _selectedFile!);
+            .upload(uniqueFileName, _selectedFile!);
       }
       final url = supabase.storage
           .from('medical-history-files')
-          .getPublicUrl(fileName!);
+          .getPublicUrl(uniqueFileName);
       _uploadedFileUrl = url;
     } catch (e) {
       print(e);
@@ -172,7 +175,7 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
 
       if (widget.history == null) {
         final createdId = await _repo.createMedicalHistory(history);
-        setState(() => _createdHistoryId = int.tryParse(createdId));
+        setState(() => _createdHistoryId = createdId);
         await _loadAIReports();
       } else {
         await _repo.updateMedicalHistory(history);
@@ -231,8 +234,20 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
 
   Future<void> _diagnoseWithAI() async {
     setState(() => _isLoading = true);
-
+    
     try {
+      final historyId = _createdHistoryId ?? widget.history?.id;
+      if (historyId == null) {
+        throw Exception("Medical history ID not found.");
+      }
+      final new_report_id = await _repo.createAIReport(
+        AIReport(
+          medicalHistoryId: historyId,
+          title: "Diagnosis Report",
+          content: "",
+        ),
+      );
+
       final medicalHistoryMap = {
         'diagnosis': _diagnosisController.text,
         'notes': _notesController.text,
@@ -248,34 +263,42 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
         'medications': [],
       };
       final pData = jsonEncode(medicalHistoryMap);
-
-      File? fileToSend;
+      dynamic fileToSend;
       String? fileType;
 
       if (_selectedFile != null) {
-        fileToSend = _selectedFile;
+        fileToSend = _selectedFile; // io.File
       } else if (_webFileBytes != null && fileName != null) {
-        final tempDir = Directory.systemTemp;
-        final tempFile = File(path.join(tempDir.path, fileName!));
-        await tempFile.writeAsBytes(_webFileBytes!);
-        fileToSend = tempFile;
-      } else if (_uploadedFileUrl != null && fileName != null) {
-        final tempDir = Directory.systemTemp;
-        final tempFile = File(path.join(tempDir.path, fileName!));
-        if (!await tempFile.exists()) {
-          final supabase = Supabase.instance.client;
-          final bytes = await supabase.storage
-              .from('medical-history-files')
-              .download(fileName!);
-          if (bytes != null) {
-            await tempFile.writeAsBytes(bytes);
-          } else {
-            throw Exception('Failed to download file from storage');
-          }
+        if (kIsWeb) {
+          // On Web: Use bytes directly
+          fileToSend = _webFileBytes;
+        } else {
+          // On mobile/desktop: write to temp file
+          final tempDir = io.Directory.systemTemp;
+          final tempFile = io.File(path.join(tempDir.path, fileName!));
+          await tempFile.writeAsBytes(_webFileBytes!);
+          fileToSend = tempFile;
         }
-        fileToSend = tempFile;
+      } else if (_uploadedFileUrl != null && fileName != null) {
+
+        final supabase = Supabase.instance.client;
+        final bytes = await supabase.storage
+            .from('medical-history-files')
+            .download(fileName!);
+
+        if (bytes == null) {
+          throw Exception('Failed to download file from Supabase');
+        }
+
+        if (kIsWeb) {
+          fileToSend = bytes;
+        } else {
+          final tempDir = io.Directory.systemTemp;
+          final tempFile = io.File(path.join(tempDir.path, fileName!));
+          await tempFile.writeAsBytes(bytes);
+          fileToSend = tempFile;
+        }
       } else {
-        // No file available
         fileToSend = null;
       }
 
@@ -293,25 +316,39 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
         fileType = null; // No file type when no file
       }
 
-      final uri = Uri.parse('http://localhost:8000/submit');
+      final uri = Uri.parse('http://localhost:8001/api/v1/submit');
       final request = http.MultipartRequest('POST', uri);
 
-      if (fileToSend != null) {
-        request.files.add(
-          await http.MultipartFile.fromPath(
-            'f_data',
-            fileToSend.path,
-            filename: path.basename(fileToSend.path),
-            contentType: fileType == 'image'
-                ? MediaType('image', 'jpeg')
-                : fileType == 'pdf'
-                ? MediaType('application', 'pdf')
-                : null,
-          ),
-        );
-      } else {
-        // No file - send empty or null field? Usually omit or send empty string:
-        request.fields['f_data'] = '';
+      if (fileToSend != null && fileName != null) {
+        if (kIsWeb && fileToSend is List<int>) {
+          // Flutter Web: use fromBytes
+          request.files.add(
+            http.MultipartFile.fromBytes(
+              'f_data',
+              fileToSend,
+              filename: fileName,
+              contentType: fileType == 'image'
+                  ? MediaType('image', 'jpeg')
+                  : fileType == 'pdf'
+                  ? MediaType('application', 'pdf')
+                  : MediaType('application', 'octet-stream'),
+            ),
+          );
+        } else if (!kIsWeb && fileToSend is io.File) {
+          // Mobile/Desktop: use fromPath
+          request.files.add(
+            await http.MultipartFile.fromPath(
+              'f_data',
+              fileToSend.path,
+              filename: path.basename(fileToSend.path),
+              contentType: fileType == 'image'
+                  ? MediaType('image', 'jpeg')
+                  : fileType == 'pdf'
+                  ? MediaType('application', 'pdf')
+                  : MediaType('application', 'octet-stream'),
+            ),
+          );
+        }
       }
 
       // Always send medical history JSON string
@@ -320,11 +357,13 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
       // Send file type if exists, else empty string
       request.fields['f_type'] = fileType ?? '';
 
+      request.fields['ai_report_id'] = new_report_id.toString();
+
       final response = await request.send();
 
       if (response.statusCode == 200) {
         final respStr = await response.stream.bytesToString();
-        print('AI Diagnose Response: $respStr');
+        // print('AI Diagnose Response: $respStr');
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Diagnosis sent successfully')),
         );
@@ -659,7 +698,7 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
                         return ListTile(
                           title: Text(report.title),
                           subtitle: Text(
-                            'Date: ${report.createdAt.toLocal().toString().split("T").first}',
+                            'Date: ${report.createdAt!.toLocal().toString().split("T").first}',
                           ),
                           trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
@@ -667,7 +706,7 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => AiDiagnosisReportScreen(
-                                  reportId: report.id,
+                                  reportId: report.id!,
                                 ),
                               ),
                             );
@@ -689,7 +728,9 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: ElevatedButton.icon(
-                              onPressed: _isLoading ? null : _submitForm,
+                              onPressed: _isLoading ? null : () async {
+                                await _submitForm();
+                              },
                               icon: const Icon(Icons.save),
                               label: const Text('Save'),
                               style: ElevatedButton.styleFrom(
@@ -719,8 +760,25 @@ class _AddMedicalHistoryScreenState extends State<AddMedicalHistoryScreen> {
                               onPressed: _isLoading
                                   ? null
                                   : () async {
-                                      await _diagnoseWithAI();
-                                      await _loadAIReports();
+                                      // If the history is not created yet, run _submitForm() first
+                                      if (_createdHistoryId == null) {
+                                        await _submitForm(); // Will set _createdHistoryId
+                                      }
+
+                                      if (_createdHistoryId != null) {
+                                        await _diagnoseWithAI();
+                                        await _loadAIReports();
+                                      } else {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Failed to save before diagnosis',
+                                            ),
+                                          ),
+                                        );
+                                      }
                                     },
                               icon: const Icon(Icons.auto_fix_high),
                               label: const Text('Diagnose with AI'),

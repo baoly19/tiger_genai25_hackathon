@@ -689,7 +689,7 @@ class _PatientScreenState extends State<PatientScreen> {
 
     if (result == true) {
       try {
-        await _repository.deleteAIReport(report.id);
+        await _repository.deleteAIReport(report.id!);
         _loadPatientData();
         ScaffoldMessenger.of(
           context,

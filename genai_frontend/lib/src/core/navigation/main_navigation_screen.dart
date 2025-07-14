@@ -81,20 +81,17 @@ class _SidebarNavigationRail extends StatelessWidget {
         children: [
           // 🔹 App Logo + Name
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            child: Row(
-              children: [
-                const FlutterLogo(size: 32),
-                const SizedBox(width: 12),
-                Text(
-                  'AutoClinic.AI',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-              ],
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+            ), // more top/bottom padding
+            child: Center(
+              // center the Row horizontally
+              child: Image.asset(
+                'assets/images/logo_white.png',
+                width: 150, // increase width
+                height: 30, // increase height
+                fit: BoxFit.cover,
+              ),
             ),
           ),
 

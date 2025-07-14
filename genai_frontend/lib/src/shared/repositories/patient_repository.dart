@@ -104,7 +104,7 @@ class PatientRepository {
 
   // MEDICAL HISTORY CRUD OPERATIONS
 
-  Future<String> createMedicalHistory(MedicalHistory history) async {
+  Future<int> createMedicalHistory(MedicalHistory history) async {
     try {
       final response = await _supabase
           .from(_medicalHistoryTable)
@@ -112,7 +112,7 @@ class PatientRepository {
           .select('id')
           .single();
 
-      return response['id'] as String;
+      return response['id'];
     } catch (e) {
       throw Exception('Failed to create medical history: $e');
     }
@@ -171,7 +171,7 @@ class PatientRepository {
 
   // AI REPORT CRUD OPERATIONS
 
-  Future<String> createAIReport(AIReport report) async {
+  Future<int> createAIReport(AIReport report) async {
     try {
       final response = await _supabase
           .from(_aiReportsTable)
@@ -179,7 +179,7 @@ class PatientRepository {
           .select('id')
           .single();
 
-      return response['id'] as String;
+      return response['id'];
     } catch (e) {
       throw Exception('Failed to create AI report: $e');
     }
@@ -257,7 +257,7 @@ class PatientRepository {
       await _supabase
           .from(_aiReportsTable)
           .update(report.toMap())
-          .eq('id', report.id);
+          .eq('id', report.id!);
     } catch (e) {
       throw Exception('Failed to update AI report: $e');
     }

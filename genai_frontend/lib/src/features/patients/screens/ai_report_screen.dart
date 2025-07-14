@@ -83,7 +83,7 @@ class _AiDiagnosisReportScreenState extends State<AiDiagnosisReportScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Created on ${DateFormat.yMMMd().format(_report!.createdAt)}',
+                        'Created on ${DateFormat.yMMMd().format(_report!.createdAt!)}',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: Colors.grey[700],
                         ),
