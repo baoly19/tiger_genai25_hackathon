@@ -11,7 +11,7 @@ This repo is part of submission for the [LeadWithAIAgents hackathon](https://gen
 
 genai\_frontend/    → Flutter web app for user interface and AI diagnosis interaction
 agent-service/     → FastAPI backend handling file uploads and triggering diagnosis via GenAI-AgentOS
-collab/            → Jupyter Notebook hosting the MCP (Multi-Agent Coordination Platform) server
+collab/            → Jupyter Notebook hosting the MCP server
 genai-agentos/     → Forked GenAI-AgentOS repository containing custom diagnosis agents
 
 ````
@@ -35,7 +35,7 @@ A **Python FastAPI service** with two core responsibilities:
 Contains a **Jupyter Notebook** used to host and coordinate the **MCP server**, enabling distributed agent execution for diagnosis.
 
 ### 4. `genai-agentos/`  
-A **forked and customized version** of [GenAI-AgentOS](https://github.com/significant-gravitas/GenAI-AgentOS), enhanced to:
+A **forked and customized version** of [GenAI-AgentOS](https://github.com/genai-works-org/genai-agento), enhanced to:
 - Implement diagnosis-specific agents
 - Integrate with FastAPI service triggers
 - Support custom workflows tailored for medical use cases
